@@ -4,26 +4,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="src/index.css">
-    <title>Document</title>
+    <title>Guise</title>
 </head>
 <body>
-    <div>Hello World</div>
+    <div id="mainTitle">Welcome to Guise!</div>
     <div id="videoContainer">
         <video autoplay="true" id="videoElement">
         
         </video>
+        <img src="" id="userImage">
+
     </div>
 
-    <img src="" id="userImage">
 
 
 </body>
 
 <script>
+//add styling to the page
+document.body.style.margin = '0px';
+document.body.style.backgroundColor = '#90EE90';
+
+//style the main title
+var mainTitle = document.getElementById('mainTitle');
+mainTitle.style.fontSize = '80px';
+mainTitle.style.fontFamily = 'serif';
+mainTitle.style.display = 'flex'
+mainTitle.style.justifyContent = 'center'
+mainTitle.style.margin = ''
+
+//add styling to and container
+var video = document.querySelector("#videoElement");
+var videoContainer = document.querySelector("#videoContainer");
+
+video.width = 500;
+video.height = 375;
+video.style.backgroundColor = '#666';
+video.style.display = 'block';
+video.style.margin = '0 auto';
+
 
 //adds camera video element to the DOM
-var video = document.querySelector("#videoElement");
 if (navigator.mediaDevices.getUserMedia) {
   navigator.mediaDevices.getUserMedia({ video: true })
     .then(function (stream) {
@@ -36,10 +57,9 @@ if (navigator.mediaDevices.getUserMedia) {
 
 //allow for user to click on the image and make a screenshot
 let canvas = document.createElement('canvas');
-let userImage = document.getElementById('userImage')
-
+let userImage = document.getElementById('userImage');
+// userImage.style.transform = 'scale(1.5)'
 video.addEventListener('click', ()=> {
-    console.log('registered')
     canvas.width = 500;
     canvas.height = 375;
 
@@ -48,7 +68,10 @@ video.addEventListener('click', ()=> {
 
     //image stored in image and then added to the DOM 
     let image = canvas.toDataURL('image/jpeg');
-    userImage.src = image
+    userImage.src = image;
+    userImage.style.display = 'flex';
+    userImage.style.margin = '0 auto'
+    video.style.display = 'none';
 })
 
 
